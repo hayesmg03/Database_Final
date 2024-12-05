@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SQLite with Flask</title>
+  </head>
+  <body>
+    <h1>Video Game Database</h1>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Director</th>
+      </tr>
+      {% for row in data %}
+      <tr>
+        <td>{{ row['GameId'] }}</td>
+        <td>{{ row['Title'] }}</td>
+        <td>{{ row['Director'] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br />
+  </body>
+</html>

@@ -1,0 +1,15 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  .results {
+    margin-top: 20px;
+  }
+  .results table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .results th, .results td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
