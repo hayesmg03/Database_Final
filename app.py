@@ -13,7 +13,7 @@ def get_db_connection():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     conn = get_db_connection()
-    data = conn.execute('SELECT * FROM Developer').fetchall()  
+    data = conn.execute('SELECT * FROM VideoGame').fetchall()  
     conn.close()
     return render_template('index.html', data=data)
 
@@ -23,7 +23,8 @@ def submit():
     if request.method == 'POST':
         text_input = request.form['text_input']
         # Process the text input here
-        data = conn.execute('SELECT * FROM ' + text_input)
+        data = conn.execute('SELECT * FROM ' + text_input).fetchall()
+    
         return render_template('index.html', data=data)
 
         
