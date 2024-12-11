@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="indexStyle.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='indexStyle.css') }}"
+    />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto"
@@ -18,9 +21,9 @@
     </form>
     <table>
       <tr>
-        <th>GameId</th>
-        <th>Title</th>
-        <th>Director</th>
+        <th>{{ columns[0] }}</th>
+        <th>{{ columns[1] }}</th>
+        <th>{{ columns[2] }}</th>
       </tr>
       {% for row in data %}
       <tr>

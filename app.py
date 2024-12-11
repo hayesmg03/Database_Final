@@ -9,23 +9,29 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row  # Allow accessing columns by name
     return conn
 
+
 # Route to display data from the database
 @app.route('/', methods=['GET', 'POST'])
 def index():
     conn = get_db_connection()
-    data = conn.execute('SELECT * FROM VideoGame').fetchall()  
+    cursor = conn.cursor()
+    data = conn.execute('SELECT * FROM VideoGame').fetchall()
+    cursor.execute("SELECT * FROM VideoGames LIMIT 0") 
+    column_names = [description[0] for description in cursor.description]
+
     conn.close()
-    return render_template('index.html', data=data)
+    return render_template('index.html', data=data, columns=column_names)
 
 @app.route('/submit', methods=['POST'])
 def submit():
     conn = get_db_connection()
+    cursor = conn.cursor()
     if request.method == 'POST':
         text_input = request.form['text_input']
-        # Process the text input here
         data = conn.execute('SELECT * FROM ' + text_input).fetchall()
-    
-        return render_template('index.html', data=data)
+        cursor.execute("SELECT * FROM " + text_input + " LIMIT 0") 
+        column_names = [description[0] for description in cursor.description]
+        return render_template('index.html', data=data, columns=column_names)
 
         
 

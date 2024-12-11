@@ -1,0 +1,17 @@
+
+
+h1{
+  color: blue;
+}
+body {
+  
+    font-family: "Roboto";
+}
+table{
+  position: absolute;
+  left: 35%;
+}
+td{
+  font-size: 13px;
+  padding-right: 60px;
+}
