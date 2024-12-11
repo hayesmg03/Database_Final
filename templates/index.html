@@ -21,15 +21,19 @@
     </form>
     <table>
       <tr>
-        <th>{{ columns[0] }}</th>
-        <th>{{ columns[1] }}</th>
-        <th>{{ columns[2] }}</th>
+        {% for col in columns %}
+        <th>{{ col }}</th>
+        {% endfor %}
+        <!-- <th>{{ columns[1] }}</th>
+        <th>{{ columns[2] }}</th> -->
       </tr>
       {% for row in data %}
       <tr>
-        <td>{{ row[0] }}</td>
-        <td>{{ row[1] }}</td>
-        <td>{{ row[2] }}</td>
+        {% for col in row %}
+        <td>{{ col }}</td>
+        {% endfor %}
+        <!-- <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td> -->
       </tr>
       {% endfor %}
     </table>
