@@ -16,7 +16,7 @@ def index():
     conn = get_db_connection()
     cursor = conn.cursor()
     data = conn.execute('SELECT * FROM VideoGame').fetchall()
-    cursor.execute("SELECT * FROM VideoGames LIMIT 0") 
+    cursor.execute("SELECT * FROM VideoGame LIMIT 0") 
     column_names = [description[0] for description in cursor.description]
 
     conn.close()
@@ -28,10 +28,17 @@ def submit():
     cursor = conn.cursor()
     if request.method == 'POST':
         text_input = request.form['text_input']
-        data = conn.execute('SELECT * FROM ' + text_input).fetchall()
-        cursor.execute("SELECT * FROM " + text_input + " LIMIT 0") 
-        column_names = [description[0] for description in cursor.description]
-        return render_template('index.html', data=data, columns=column_names)
+        try:
+            data = conn.execute('SELECT * FROM ' + text_input).fetchall()
+            cursor.execute("SELECT * FROM " + text_input + " LIMIT 0") 
+            column_names = [description[0] for description in cursor.description]
+            return render_template('index.html', data=data, columns=column_names)
+        except sqlite3.OperationalError:
+            print("table not found")
+            data = conn.execute('SELECT * FROM VideoGame').fetchall()
+            cursor.execute("SELECT * FROM VideoGame LIMIT 0") 
+            column_names = [description[0] for description in cursor.description]
+            return render_template('index.html', data=data, columns=column_names, error_message="Table Not Found.")
 
         
 
