@@ -1,4 +1,5 @@
 Jean Prinston & Mitch Hayes
+
 COMP 405-002
 
 To run our code for our database:
